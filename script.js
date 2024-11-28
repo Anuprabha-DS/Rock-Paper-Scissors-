@@ -1,66 +1,77 @@
-let player_score = 0;
-let computer_score = 0;
-
+let player_score = 0
+let computer_score = 0 
 const emojis = {
     'rock': '👊',
     'paper': '✋',
     'scissors': '✌️'
 };
 
-function updateHands(player, computer) {
-    document.getElementById('player-play').textContent = emojis[player];
-    document.getElementById('computer-play').textContent = emojis[computer];
+
+function updateHands(player,computer){
+    document.getElementById('player-play').textContent = emojis[player] 
+    document.getElementById('computer-play').textContent = emojis[computer] 
     document.getElementById('playDiv').style.opacity = 1;
+
 }
 
-function Score(playerScore, computerScore) {
+function Score(playerScore,computerScore){
+    
     document.getElementById('player-score').innerText = playerScore;
     document.getElementById('computer-score').innerText = computerScore;
 }
 
-function updateScore(player, computer) {
+function updateScore(player,computer){
+    // Rock beats Scissors
+    // Scissors beats Paper
+    // Paper beats Rock
     document.getElementById('display').style.opacity = 1;
 
-    if (player === computer) {
-        document.getElementById("display-result").textContent = `It's a draw! Both chose ${player}`;
-        return;
+    if(player == 'rock' & computer=='scissors' || player == 'scissors' & computer=='paper' || player == 'paper' & computer=='rock' ){
+        player_score = player_score+1 
+        // document.getElementById("player-score").innerText = player_score
+        Score(player_score,computer_score)
+        document.getElementById("display-result").textContent = ` You win! ${player} beats ${computer}`
+
+        return player_score}
+    else if(player == 'rock' & computer=='rock' || player == 'scissors' & computer=='scissors'|| player == 'paper' & computer=='paper')
+    {
+        document.getElementById("display-result").textContent = ` It's a draw! Both choose ${player}`
     }
+    else
+    {
+        computer_score++
+        Score(player_score,computer_score)
 
-    const winConditions = {
-        'rock': 'scissors',
-        'scissors': 'paper',
-        'paper': 'rock'
-    };
+        // document.getElementById("computer-score").innerText = computer_score
+        document.getElementById("display-result").textContent = ` You lose! ${computer} beats ${player}`
 
-    if (winConditions[player] === computer) {
-        player_score++;
-        Score(player_score, computer_score);
-        document.getElementById("display-result").textContent = `You win! ${player} beats ${computer}`;
-    } else {
-        computer_score++;
-        Score(player_score, computer_score);
-        document.getElementById("display-result").textContent = `You lose! ${computer} beats ${player}`;
-    }
+        return computer_score}
 }
 
-function computerchoice(arr) {
-    return arr[Math.floor(Math.random() * arr.length)];
+
+function computerchoice(arr){
+    const randomIndex = Math.floor(Math.random() * arr.length);
+    return arr[randomIndex];
 }
 
-function playGame(option) {
-    const array = ["rock", "paper", "scissors"];
-    const computer_hand = computerchoice(array);
-    updateHands(option, computer_hand);
-    updateScore(option, computer_hand);
+function playGame(option){
+
+    const array=["rock","paper","scissors"]
+    const computer_hand = computerchoice(array)
+    updateHands(option,computer_hand)
+    updateScore(option,computer_hand)
+
+    
 }
 
-function restart() {
-    player_score = 0;
-    computer_score = 0;
-    Score(player_score, computer_score);
-    document.getElementById("display-result").textContent = 'Choose an option to start';
-    document.getElementById('player-play').textContent = '👊';
-    document.getElementById('computer-play').textContent = '👊';
+function restart(){
+    player_score=0
+    computer_score=0
+    Score(player_score,computer_score)
+    // document.getElementById("display-result").textContent = 'display'
+    // document.getElementById('player-play').textContent = 'hand'
+    // document.getElementById('computer-play').textContent = 'hand'
     document.getElementById('display').style.opacity = 0;
     document.getElementById('playDiv').style.opacity = 0;
+
 }

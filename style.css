@@ -11,12 +11,12 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 1rem;
+    padding: 1rem;   /*1rem Equals 16px */
 }
 
 .container {
     background: rgba(255, 255, 255, 0.1);
-    padding: 2rem 1rem;
+    padding: 2rem 1rem;  
     border-radius: 15px;
     text-align: center;
     width: min(90%, 500px);
@@ -24,7 +24,7 @@ body {
 
 
 h1{
-    font-size: clamp(1.5rem, 5vw, 3rem); /* clamp() function for responsive font sizing.Minimum: 1.5rem,Preferred: 5vw (5% of the viewport width),Maximum: 3rem */
+    font-size: clamp(1.5rem, 5vw, 3rem); /* clamp(minimum, preferred, maximum) function for responsive font sizing.Minimum: 1.5rem,Preferred: 5vw (5% of the viewport width),Maximum: 3rem */
     margin-bottom: 1.5rem;
 }
 
