@@ -24,7 +24,8 @@ body {
 
 
 h1{
-    font-size: clamp(1.5rem, 5vw, 3rem); /* clamp(minimum, preferred, maximum) function for responsive font sizing.Minimum: 1.5rem,Preferred: 5vw (5% of the viewport width),Maximum: 3rem */
+    font-size: clamp(1.5rem, 5vw, 3rem); /* clamp(minimum, preferred, maximum) function for responsive font sizing.
+                                            Minimum: 1.5rem,Preferred: 5vw (5% of the viewport width),Maximum: 3rem */
     margin-bottom: 1.5rem;
 }
 

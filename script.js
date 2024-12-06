@@ -1,11 +1,13 @@
 let player_score = 0
 let computer_score = 0 
+
 const emojis = {
     'rock': '👊',
     'paper': '✋',
     'scissors': '✌️'
 };
 
+const MAX_SCORE = Number(prompt("Enter the maximum score: "))
 
 function updateHands(player,computer){
     document.getElementById('player-play').textContent = emojis[player] 
@@ -15,9 +17,17 @@ function updateHands(player,computer){
 }
 
 function Score(playerScore,computerScore){
-    
+   
     document.getElementById('player-score').innerText = playerScore;
     document.getElementById('computer-score').innerText = computerScore;
+
+    if (player_score === MAX_SCORE || computer_score === MAX_SCORE) {
+        const winner = player_score === MAX_SCORE ? "You" : "The computer";
+        setTimeout(() => {
+            alert(`${winner} got ${MAX_SCORE} points! Please Restarting...`);
+            restart();
+        });
+    }
 }
 
 function updateScore(player,computer){
@@ -25,7 +35,6 @@ function updateScore(player,computer){
     // Scissors beats Paper
     // Paper beats Rock
     document.getElementById('display').style.opacity = 1;
-
     if(player == 'rock' & computer=='scissors' || player == 'scissors' & computer=='paper' || player == 'paper' & computer=='rock' ){
         player_score = player_score+1 
         // document.getElementById("player-score").innerText = player_score
@@ -41,11 +50,11 @@ function updateScore(player,computer){
     {
         computer_score++
         Score(player_score,computer_score)
-
         // document.getElementById("computer-score").innerText = computer_score
         document.getElementById("display-result").textContent = ` You lose! ${computer} beats ${player}`
 
         return computer_score}
+    
 }
 
 
@@ -60,17 +69,13 @@ function playGame(option){
     const computer_hand = computerchoice(array)
     updateHands(option,computer_hand)
     updateScore(option,computer_hand)
-
-    
+   
 }
 
 function restart(){
     player_score=0
     computer_score=0
     Score(player_score,computer_score)
-    // document.getElementById("display-result").textContent = 'display'
-    // document.getElementById('player-play').textContent = 'hand'
-    // document.getElementById('computer-play').textContent = 'hand'
     document.getElementById('display').style.opacity = 0;
     document.getElementById('playDiv').style.opacity = 0;
 
